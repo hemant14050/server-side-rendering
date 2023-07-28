@@ -1,7 +1,7 @@
 {
   "name": "authentication-system",
   "version": "1.0.0",
-  "description": "This is an simple authentication system which provides functionality of login/signup and protected dashboard.",
+  "description": "Created app which renders web pages from server side using ejs and login with session.",
   "main": "server.js",
   "scripts": {
     "test": "npm server.js",
