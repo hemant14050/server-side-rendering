@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .main-container {
+            width: 360px;
+            max-width: 100%;
+        }
+        .main-container form {
+            display: flex;
+            flex-direction: column; 
+            gap: 45px;
+            background-color: rgb(255, 255, 255);
+            padding: 15px;
+            border: 1px solid rgb(69, 67, 67);
+            border-radius: 1rem;
+            margin-top: 50px;
+        }
+        .inner-ip {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input {
+            height: 30px;
+            outline: none;
+            border: none;
+            background-color: inherit;
+            border-bottom: 1px solid rgb(67, 67, 70);
+            font-size: medium;
+        }
+
+        button {
+            background-color: transparent;
+            border: 1px solid rgb(6, 151, 6);
+            color: rgb(6, 151, 6);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: medium;
+            padding: 8px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .hh {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .signup-btn:hover {
+            background-color: rgb(6, 151, 6);
+            color: white;
+        }
+
+        .login-btn:hover {
+            background-color: rgb(6, 151, 6);
+            color: white;
+        }
+
+        .p-text {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <form action="/signup" method="post">
+            <div class="inner-ip">
+                <h2 class="hh">SignUp Page</h2>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                <input type="text" name="mobile" id="mobile" placeholder="Enter your mobile number" required>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button class="signup-btn" type="submit">SignUp →</button>
+        </form>
+        <p class="p-text">Are you already registered?</p>
+        <a href="/login"><button class="login-btn">Login Up</button></a>
+    </div>
+</body>
+</html>
