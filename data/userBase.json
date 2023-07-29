@@ -1,1 +1,32 @@
-{"hp":{"username":"hp","email":"hemant14050@gmail.com","mobile":"9322311742","password":"hp"},"jay":{"username":"jay","email":"admin@gmail.com","mobile":"9322311742","password":"jay"},"hpp":{"username":"hpp","email":"hemant14050@gmail.com","mobile":"9322311742","password":"hppg"}}
+{
+  "hp": {
+    "username": "hp",
+    "email": "hemant14050@gmail.com",
+    "mobile": "9322311742",
+    "password": "hp"
+  },
+  "jay": {
+    "username": "jay",
+    "email": "admin@gmail.com",
+    "mobile": "9322311742",
+    "password": "jay"
+  },
+  "hpp": {
+    "username": "hpp",
+    "email": "hemant14050@gmail.com",
+    "mobile": "9322311742",
+    "password": "hppg"
+  },
+  "bhai": {
+    "username": "bhai",
+    "email": "jay@a.com",
+    "mobile": "9322311742",
+    "password": "11"
+  },
+  "Hemant": {
+    "username": "Hemant",
+    "email": "hemant14050@gmail.com",
+    "mobile": "9322311742",
+    "password": "123"
+  }
+}

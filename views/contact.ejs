@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User | Contact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./components/header.ejs", {username: username}) %>
+    <div class="container">
+        <h1>This is Contact Page - After Login</h1>
+    </div>
+</body>
+</html>

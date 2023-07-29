@@ -4,29 +4,66 @@ const PORT = 3000;
 const session = require("express-session");
 const fs = require("fs");
 
+// set template engine
+app.set("view engine", "ejs");
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
 }));
 
+// json is used to parse data coming from ajax requests
 app.use(express.json());
+// urlencoded is used to parse data coming from html forms
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     if(!req.session.isLoggedin) {
+        res.redirect("/login",);
+        return;
+    }
+    fs.readFile(__dirname + "/data/data.json", (err, data) => {
+        if(err) {
+            console.log(err);
+            res.render("dashboard", { username: req.session.username, data:null });
+            return;
+        }
+        const dataObj = JSON.parse(data);
+        res.render("dashboard", { username: req.session.username, data: dataObj });
+    });
+});
+
+app.get("/home", (req, res) => {
+    if(!req.session.isLoggedin) {
         res.redirect("/login");
         return;
     }
-    res.sendFile(__dirname + "/views/dashboard.html");
+    res.redirect("/");
+});
+
+app.get("/about", (req, res) => {
+    if(!req.session.isLoggedin) {
+        res.redirect("/login");
+        return;
+    }
+    res.render("about", { username: req.session.username });
+});
+
+app.get("/contact", (req, res) => {
+    if(!req.session.isLoggedin) {
+        res.redirect("/login");
+        return;
+    }
+    res.render("contact", { username: req.session.username });
 });
 
 app.get("/login", (req, res) => {
-    res.sendFile(__dirname + "/public/login.html");
+    res.render("login", {error: null});
 });
 
 app.get("/signup", (req, res) => {
-    res.sendFile(__dirname + "/public/signup.html");
+    res.render("signup", {error: null});
 });
 
 app.post("/signup", (req, res) => {
@@ -39,19 +76,19 @@ app.post("/signup", (req, res) => {
     fs.readFile(__dirname + "/data/userBase.json", (err, data) => {
         if(err) {
             console.log(err);
-            res.status(500).send("Something went wrong");
+            res.render("signup", {error: "Something went wrong"});
             return;
         }
         const userBase = JSON.parse(data);
         if(userBase[username]) {
-            res.status(400).send("User already exists");
+            res.render("signup", {error: "User already exists"});
             return;
         }
         userBase[username] = { username, email, mobile, password };
         fs.writeFile(__dirname + "/data/userBase.json", JSON.stringify(userBase), (err) => {
             if(err) {
                 console.log(err);
-                res.status(500).send("Something went wrong");
+                res.render("signup", {error: "Something went wrong"});
                 return;
             }
             res.redirect("/login");
@@ -71,12 +108,12 @@ app.post("/login", (req, res) => {
     fs.readFile(__dirname + "/data/userBase.json", (err, data) => {
         if(err) {
             console.log(err);
-            res.status(500).send("Something went wrong");
+            res.render("login", {error: "Something went wrong"});
             return;
         }
         const userBase = JSON.parse(data);
         if(!userBase[username]) {
-            res.status(400).send("User does not exist");
+            res.render("login", {error: "User does not exist"});
             return;
         }
         if(userBase[username].password === password) {
@@ -85,16 +122,16 @@ app.post("/login", (req, res) => {
             res.redirect("/");
             return;
         }
-        res.status(400).send("Invalid credentials");
+        res.render("login", {error: "Incorrect password"});
     });
 });
 
 app.get("/logout", (req, res) => {
-    console.log("session destroyed");
+    // console.log("session destroyed");
     req.session.destroy();
     res.redirect("/login");
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
